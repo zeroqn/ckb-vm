@@ -9,6 +9,7 @@ rust-version = "1.61.0"
 autobins = false
 
 [features]
+default = ["std"]
 std = []
 enable-chaos-mode-by-default = []
 
