@@ -8,6 +8,7 @@ use super::{
     },
     CoreMachine, DefaultMachine, Machine, SupportMachine,
 };
+use crate::vec::Vec;
 use bytes::Bytes;
 
 // The number of trace items to keep

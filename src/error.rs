@@ -1,3 +1,6 @@
+use crate::string::String;
+use crate::string::ToString;
+
 #[derive(Debug, PartialEq, Clone, Eq, Display)]
 pub enum Error {
     #[display(fmt = "asm error: {}", "_0")]
@@ -32,6 +35,7 @@ pub enum Error {
     InvalidOp(u16),
     #[display(fmt = "invalid version")]
     InvalidVersion,
+    #[cfg(feature = "std")]
     #[display(fmt = "I/O error: {:?} {}", "kind", "data")]
     IO {
         kind: std::io::ErrorKind,
@@ -53,8 +57,10 @@ pub enum Error {
     Unimplemented,
 }
 
+#[cfg(feature = "std")]
 impl std::error::Error for Error {}
 
+#[cfg(feature = "std")]
 impl From<std::io::Error> for Error {
     fn from(error: std::io::Error) -> Self {
         Error::IO {

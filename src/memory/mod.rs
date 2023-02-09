@@ -2,10 +2,11 @@ use super::{
     bits::{rounddown, roundup},
     Error, Register, RISCV_PAGESIZE,
 };
+use crate::cmp::min;
+use crate::ptr;
 use bytes::Bytes;
-use std::cmp::min;
-use std::ptr;
 
+#[cfg(feature = "std")]
 pub mod flat;
 pub mod sparse;
 pub mod wxorx;

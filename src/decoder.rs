@@ -6,6 +6,7 @@ use crate::instructions::{
     InstructionFactory, Itype, R4type, Register, Rtype, Utype,
 };
 use crate::memory::Memory;
+use crate::vec::Vec;
 use crate::{Error, ISA_B, ISA_MOP, RISCV_MAX_MEMORY, RISCV_PAGESIZE};
 
 const RISCV_PAGESIZE_MASK: u64 = RISCV_PAGESIZE as u64 - 1;

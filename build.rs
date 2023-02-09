@@ -3,7 +3,8 @@
 // have to keep features always on, and do conditional compilation within the
 // source code
 
-fn main() {
+#[cfg(feature = "std")]
+fn detect_asm() {
     use std::env;
 
     let target_family = env::var("CARGO_CFG_TARGET_FAMILY").unwrap_or_default();
@@ -93,4 +94,9 @@ fn main() {
 
         println!("cargo:rustc-cfg=has_asm")
     }
+}
+
+fn main() {
+    #[cfg(feature = "std")]
+    detect_asm();
 }

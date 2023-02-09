@@ -3,7 +3,10 @@ pub mod asm;
 pub mod elf_adaptor;
 pub mod trace;
 
-use std::fmt::{self, Display};
+use crate::boxed::Box;
+use crate::fmt::{self, Display};
+use crate::string::String;
+use crate::vec::Vec;
 
 use bytes::Bytes;
 use scroll::Pread;

@@ -10,7 +10,8 @@ build = "build.rs"
 exclude = ["/benches", "/tests"]
 
 [features]
-default = []
+default = ["std"]
+std = ["byteorder"]
 # Require asm feature, generates an error if asm cannot be enabled.
 asm = []
 # Detect if requirements are met, and enable asm feature when we can.
@@ -21,8 +22,9 @@ miri-ci = []
 pprof = []
 
 [dependencies]
-byteorder = "1"
+byteorder = { version = "1", optional = true }
 bytes = "1"
+cfg-if = "0.1"
 goblin_v023 = { package = "goblin", version = "=0.2.3" }
 goblin_v040 = { package = "goblin", version = "=0.4.0" }
 scroll = "0.10"

@@ -1,9 +1,10 @@
 use super::super::{Error, Register, RISCV_MAX_MEMORY, RISCV_PAGESIZE, RISCV_PAGE_SHIFTS};
 use super::{fill_page_data, memset, round_page_down, Memory, Page, FLAG_DIRTY};
 
+use crate::cmp::min;
+use crate::marker::PhantomData;
+use crate::vec::Vec;
 use bytes::Bytes;
-use std::cmp::min;
-use std::marker::PhantomData;
 
 const INVALID_PAGE_INDEX: u16 = 0xFFFF;
 

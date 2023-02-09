@@ -1,6 +1,6 @@
-use std::cmp::min;
-use std::fmt::Display;
-use std::ops::{BitAnd, BitOr, BitXor, Not, Shl, Shr};
+use crate::cmp::min;
+use crate::fmt::Display;
+use crate::ops::{BitAnd, BitOr, BitXor, Not, Shl, Shr};
 
 pub trait Register:
     Sized

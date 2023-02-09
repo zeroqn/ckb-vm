@@ -1,3 +1,31 @@
+#![cfg_attr(not(feature = "std"), no_std)]
+
+cfg_if::cfg_if! {
+    if #[cfg(feature = "std")] {
+        use std::cmp;
+        use std::fmt;
+        use std::ops;
+        use std::rc;
+        use std::ptr;
+        use std::marker;
+        use std::vec;
+        use std::boxed;
+        use std::string;
+    } else {
+        use core::cmp;
+        use core::fmt;
+        use core::ops;
+        use alloc::rc;
+        use core::ptr;
+        use core::marker;
+        use alloc::boxed;
+        use alloc::string;
+        #[macro_use]
+        extern crate alloc;
+        use alloc::vec;
+    }
+}
+
 #[macro_use]
 extern crate derive_more;
 
@@ -8,6 +36,7 @@ pub mod error;
 pub mod instructions;
 pub mod machine;
 pub mod memory;
+#[cfg(feature = "std")]
 pub mod snapshot;
 pub mod syscalls;
 
@@ -21,10 +50,12 @@ pub use crate::{
         trace::TraceMachine, CoreMachine, DefaultCoreMachine, DefaultMachine,
         DefaultMachineBuilder, InstructionCycleFunc, Machine, SupportMachine,
     },
-    memory::{flat::FlatMemory, sparse::SparseMemory, wxorx::WXorXMemory, Memory},
+    memory::{sparse::SparseMemory, wxorx::WXorXMemory, Memory},
     syscalls::Syscalls,
 };
 pub use bytes::Bytes;
+#[cfg(feature = "std")]
+pub use memory::flat::FlatMemory;
 
 pub use ckb_vm_definitions::{
     registers, DEFAULT_STACK_SIZE, ISA_B, ISA_IMC, ISA_MOP, MEMORY_FRAMES, MEMORY_FRAMESIZE,
